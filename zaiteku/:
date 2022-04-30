@@ -44,19 +44,15 @@ class Player():
             self._draw_postcard()
     
     def _draw_zaitekucard(self):
-        print("ziteku")
-
-    
-    def _draw_newscard(self):
-        # print("news")
+        #print("ziteku")
         pass
     
+    def _draw_newscard(self):
+            print("news")
+    
     def _draw_postcard(self):
-        print("post")
-        print(self.money)
-        self.money -= 100
-        print(self.money)
-
+            #print("post")
+            self.money -= 100
     
     
 
