@@ -49,7 +49,11 @@ class Player():
             self._draw_postcard()
     
     def _draw_zaitekucard(self):
-        print("ziteku")
+         print("ziteku")
+         if self.has_zaiteku == False:
+            self.money -= 40000
+            self.has_zaiteku = True
+            self.monthly_earn_money = 5000
 
     
     def _draw_newscard(self):
