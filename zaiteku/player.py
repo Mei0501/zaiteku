@@ -15,6 +15,8 @@ class Player():
         self.position = 0
         self.is_finished = False
         self.has_zaiteku = False
+        self.monthly_earn_money = 0
+
 
     #procceed関数（サイコロの分だけ進む関数）作成
     def proceed(self):
@@ -22,7 +24,8 @@ class Player():
             self.position = self.position + role_dice()
             if self.position > 58:
                 self.position = 0 
-                self.money = self.money + self.monthly_money
+                self.money += self.monthly_money
+                self.money += self.monthly_earn_money
 
                 if self.money >= self.finish_money:
                     self.is_finished = True
