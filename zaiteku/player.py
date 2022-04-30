@@ -7,12 +7,14 @@ import random
 
 class Player():
 
-    def __init__(self, name, finish_money):
+    def __init__(self, name, finish_money, monthly_money):
         self.name = name
         self.finish_money = finish_money
+        self.monthly_money = monthly_money 
         self.money = 0
         self.position = 0
         self.is_finished = False
+        self.has_zaiteku = False
 
     #procceed関数（サイコロの分だけ進む関数）作成
     def proceed(self):
@@ -20,7 +22,7 @@ class Player():
             self.position = self.position + role_dice()
             if self.position > 58:
                 self.position = 0 
-                self.money = self.money + 2000
+                self.money = self.money + self.monthly_money
 
                 if self.money >= self.finish_money:
                     self.is_finished = True
