@@ -43,6 +43,7 @@ class Player():
         news_positions = [3, 7, 12, 21, 28, 32, 39, 44, 56]
         post_positions =  [4,13,18,26,36,40,47,53]
         insurance_positions = [8, 29, 42, 51]
+        surge_stock_position = [10]
     
     
         if self.position in zaiteku_positions:
@@ -56,6 +57,10 @@ class Player():
 
         elif self.position in insurance_positions:
             self._draw_insurancecard()
+
+        elif self.position in surge_stock_position:
+            self._surge_stock()
+
 
     
     def _draw_zaitekucard(self):
@@ -85,6 +90,11 @@ class Player():
              self.insurance_type = "insurance"
              self.has_insurance = True
              self.monthly_payment_money = 10
+
+    def _surge_stock(self):
+        self.money += role_dice() * 100
+        print(self.money)
+        
         
     
 
