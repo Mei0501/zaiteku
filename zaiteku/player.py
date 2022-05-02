@@ -15,9 +15,8 @@ class Player():
         self.position = 0
         self.is_finished = False
         self.has_zaiteku = False
-        self.has_insurance = False
+        self.holding_insurance = {'driver': False, 'life': False}
         self.zaiteku_type = None
-        self.insurance_type = None
         self.monthly_earn_money = 0
         self.monthly_payment_money = 0
 
@@ -64,7 +63,6 @@ class Player():
 
     
     def _draw_zaitekucard(self):
-         print("ziteku")
          if self.has_zaiteku is False:
             self.zaiteku_type = 'investment'
             self.money -= 40000
@@ -73,30 +71,40 @@ class Player():
 
     
     def _draw_newscard(self):
-        print("news")
         if self.zaiteku_type == 'investment':
             self.money += 5000
 
     
     def _draw_postcard(self):
-        print("post")
-        print(self.money)
         self.money -= 100
-        print(self.money)
 
     def _draw_insurancecard(self):
-         print("insurance")
-         if self.has_insurance is False:
-             self.insurance_type = "insurance"
-             self.has_insurance = True
-             self.monthly_payment_money = 10
+        if self.holding_insurance['driver'] is True and self.holding_insurance['life'] is True :
+            pass
+        else:
+            while True:
+                print(self.holding_insurance)
+                name = input("choose from 'driver' and 'life' and 'none'")
+                if name == 'driver':
+                    if self.holding_insurance['driver'] is True:
+                        print("you already have driver self.holding_insurancerance")
+                    else:
+                        self.holding_insurance['driver'] = True
+                        break
+                elif name == 'life':
+                    if self.holding_insurance['life'] is True:
+                        print("you already have life self.holding_insurancerance")
+                    else:
+                        self.holding_insurance['life'] = True
+                        break
+                elif name == 'none':
+                    break
+                else:
+                    print("input %s is illegal" % name)
+            print(self.holding_insurance)
 
     def _surge_stock(self):
         self.money += role_dice() * 100
-        print(self.money)
-        
-        
-    
 
 #サイコロを２個ふった数をかえす
 def role_dice():
