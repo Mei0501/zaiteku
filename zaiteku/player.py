@@ -30,6 +30,7 @@ class Player():
                 self.position = 0 
                 self.money += self.monthly_money
                 self.money += self.monthly_earn_money
+                self.money -= self.monthly_payment_money
 
                 if self.money >= self.finish_money:
                     self.is_finished = True
@@ -59,7 +60,7 @@ class Player():
     
     def _draw_zaitekucard(self):
          print("ziteku")
-         if self.has_zaiteku == False:
+         if self.has_zaiteku is False:
             self.zaiteku_type = 'investment'
             self.money -= 40000
             self.has_zaiteku = True
@@ -80,10 +81,10 @@ class Player():
 
     def _draw_insurancecard(self):
          print("insurance")
-         if self.has_insurance == False:
-             self.entry_insurance = "insurance"
+         if self.has_insurance is False:
+             self.insurance_type = "insurance"
              self.has_insurance = True
-             self.monthly_payment_money -= 10
+             self.monthly_payment_money = 10
         
     
 
