@@ -15,7 +15,7 @@ class Player():
         self.position = 0
         self.is_finished = False
         self.has_zaiteku = False
-        self.has_insurace = False
+        self.has_insurance = False
         self.zaiteku_type = None
         self.insurance_type = None
         self.monthly_earn_money = 0
@@ -80,9 +80,9 @@ class Player():
 
     def _draw_insurancecard(self):
          print("insurance")
-         if self.has_insurace == False:
+         if self.has_insurance == False:
              self.entry_insurance = "insurance"
-             self.has_insurane = True
+             self.has_insurance = True
              self.monthly_payment_money -= 10
         
     
