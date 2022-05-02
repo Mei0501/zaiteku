@@ -15,6 +15,7 @@ class Player():
         self.position = 0
         self.is_finished = False
         self.has_zaiteku = False
+        self.zaiteku_type = None
         self.monthly_earn_money = 0
 
 
@@ -37,6 +38,7 @@ class Player():
         zaiteku_positions = [2, 5, 11, 16, 19, 23, 31, 34, 38, 46, 55]
         news_positions = [3, 7, 12, 21, 28, 32, 39, 44, 56]
         post_positions =  [4,13,18,26,36,40,47,53]
+        insurance_positions = [8, 29, 42, 51]
     
     
         if self.position in zaiteku_positions:
@@ -45,20 +47,27 @@ class Player():
         elif self.position in news_positions:
             self._draw_newscard()
     
-        else: #position in news_positions:
+        elif position in news_positions:
             self._draw_postcard()
+
+        elif position in insurance_positions:
+            self._draw_insurancecard()
+
     
     def _draw_zaitekucard(self):
          print("ziteku")
          if self.has_zaiteku == False:
+            self.zaiteku_type = 'investment'
             self.money -= 40000
             self.has_zaiteku = True
             self.monthly_earn_money = 5000
 
     
     def _draw_newscard(self):
-        # print("news")
-        pass
+        print("news")
+        if self.zaiteku_type == 'investment':
+            self.money += 5000
+
     
     def _draw_postcard(self):
         print("post")
@@ -66,7 +75,9 @@ class Player():
         self.money -= 100
         print(self.money)
 
-    
+    def _draw_insurancecard(self):
+         print("insurance")
+        
     
 
 #サイコロを２個ふった数をかえす
