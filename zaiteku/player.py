@@ -15,8 +15,11 @@ class Player():
         self.position = 0
         self.is_finished = False
         self.has_zaiteku = False
+        self.has_insurace = False
         self.zaiteku_type = None
+        self.insurance_type = None
         self.monthly_earn_money = 0
+        self.monthly_payment_money = 0
 
 
     #procceed関数（サイコロの分だけ進む関数）作成
@@ -47,10 +50,10 @@ class Player():
         elif self.position in news_positions:
             self._draw_newscard()
     
-        elif position in news_positions:
+        elif self.position in news_positions:
             self._draw_postcard()
 
-        elif position in insurance_positions:
+        elif self.position in insurance_positions:
             self._draw_insurancecard()
 
     
@@ -77,6 +80,10 @@ class Player():
 
     def _draw_insurancecard(self):
          print("insurance")
+         if self.has_insurace == False:
+             self.entry_insurance = "insurance"
+             self.has_insurane = True
+             self.monthly_payment_money -= 10
         
     
 
