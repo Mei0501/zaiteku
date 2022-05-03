@@ -42,9 +42,11 @@ class Player():
         news_positions = [3, 7, 12, 21, 28, 32, 39, 44, 56]
         post_positions =  [4,13,18,26,36,40,47,53]
         insurance_positions = [8, 29, 42, 51]
-        surge_stock_position = [10]
+        stock_position = [10, 48]
         car_accident_positions = [9, 50]
         get_sick_positions = [27, 37, 52]
+        special_position = [49]
+
 
     
     
@@ -60,8 +62,11 @@ class Player():
         elif self.position in insurance_positions:
             self._draw_insurancecard()
 
-        elif self.position in surge_stock_position:
-            self._surge_stock()
+        elif self.position in stock_position:
+            self._stock()
+
+        elif self.position in special_position:
+            self._special_bonus()
 
         elif self.position in car_accident_positions:
             self._car_accident()
@@ -112,8 +117,16 @@ class Player():
                     print("input %s is illegal" % name)
             print(self.holding_insurance)
 
-    def _surge_stock(self):
-        self.money += role_dice() * 100
+    def _stock(self):
+        stock_price = role_dice() *100
+        if self.position == 10:
+            print(self.money)
+            self.money += stock_price
+            print(self.money)
+            print("株価暴騰")
+        else:
+            self.money -= stock_price
+            print("株価暴落")
 
 
     def _car_accident(self):
@@ -131,6 +144,10 @@ class Player():
             self.holding_insurance['life'] = False
             print("生命保険を回収します")
 
+
+    def _special_bonus(self):
+        self.money += 800
+        print("Bonus" + str(self.money))
 
 
 
