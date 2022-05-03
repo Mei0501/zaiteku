@@ -43,6 +43,8 @@ class Player():
         post_positions =  [4,13,18,26,36,40,47,53]
         insurance_positions = [8, 29, 42, 51]
         surge_stock_position = [10]
+        car_accident_positions = [9, 50]
+
     
     
         if self.position in zaiteku_positions:
@@ -59,6 +61,9 @@ class Player():
 
         elif self.position in surge_stock_position:
             self._surge_stock()
+
+        elif self.position in car_accident_positions:
+            self._car_accident()
 
 
     
@@ -105,6 +110,14 @@ class Player():
 
     def _surge_stock(self):
         self.money += role_dice() * 100
+
+
+    def _car_accident(self):
+        if self.holding_insurance['driver'] is False:
+            self.money -= 100
+            print("自動車保険を回収します")
+        else:
+            self.holding_insurance['driver'] = False
 
 #サイコロを２個ふった数をかえす
 def role_dice():
