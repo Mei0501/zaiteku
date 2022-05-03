@@ -44,6 +44,7 @@ class Player():
         insurance_positions = [8, 29, 42, 51]
         surge_stock_position = [10]
         car_accident_positions = [9, 50]
+        get_sick_positions = [27, 37, 52]
 
     
     
@@ -64,6 +65,9 @@ class Player():
 
         elif self.position in car_accident_positions:
             self._car_accident()
+
+        elif self.position in get_sick_positions:
+            self._get_sick()
 
 
     
@@ -115,9 +119,20 @@ class Player():
     def _car_accident(self):
         if self.holding_insurance['driver'] is False:
             self.money -= 100
-            print("自動車保険を回収します")
         else:
             self.holding_insurance['driver'] = False
+            print("自動車保険を回収します")
+
+    def _get_sick(self):
+        if self.holding_insurance['life'] is False:
+            if self.position == 27:
+                self.money -= 80
+        else:
+            self.holding_insurance['life'] = False
+            print("生命保険を回収します")
+
+
+
 
 #サイコロを２個ふった数をかえす
 def role_dice():
