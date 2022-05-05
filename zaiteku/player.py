@@ -1,4 +1,5 @@
 
+
 #!/usr/bin/env python
 
 import random
@@ -7,7 +8,7 @@ import random
 
 class Player():
 
-    def __init__(self, name, finish_money, monthly_money):
+    def __init__(self, name, finish_money=10000, monthly_money=1000):
         self.name = name
         self.finish_money = finish_money
         self.monthly_money = monthly_money 
