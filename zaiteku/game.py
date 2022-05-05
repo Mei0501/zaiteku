@@ -18,3 +18,6 @@ class Game():
                     print(name + " won the game")
                     is_continue = False
                     break
+
+    def check_finished(self):
+        pass
