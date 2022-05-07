@@ -2,7 +2,7 @@ import sys
 from player import Player
 sys.path.append('/Users/mizo/Project/zaiteku/zaiteku')
 
-
+#Player(name)でインスタンス化マネーなどはデフォルト値
 class Game():
     def __init__(self, player_names, finish_money, monthly_money):
         self.players = {name: Player(name) for name in player_names}

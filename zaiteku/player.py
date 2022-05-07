@@ -22,19 +22,16 @@ class Player():
 
     #procceed関数（サイコロの分だけ進む関数）作成
     def proceed(self):
-        if not self.is_finished:
-            self.position = self.position + role_dice()
-            if self.position > 58:
-                self.position = 0 
-                self.money += self.monthly_money
-                self.money += self.monthly_earn_money
-                self.money -= self.monthly_payment_money
+        self.position = self.position + role_dice()
+        if self.position > 58:
+           self.position = 0 
+           self.money += self.monthly_money
+           self.money += self.monthly_earn_money
+           self.money -= self.monthly_payment_money
 
-                if self.money >= self.finish_money:
-                    self.is_finished = True
-            self._get_event()
-        else:
-             raise RuntimeError("already finished")
+           if self.money >= self.finish_money:
+               self.is_finished = True
+        self._get_event()
 
     def _get_event(self):
         zaiteku_positions = [2, 5, 11, 16, 19, 23, 31, 34, 38, 46, 55]
@@ -119,13 +116,9 @@ class Player():
     def _stock(self):
         stock_price = role_dice() *100
         if self.position == 10:
-            print(self.money)
             self.money += stock_price
-            print(self.money)
-            print("株価暴騰")
         else:
             self.money -= stock_price
-            print("株価暴落")
 
 
     def _car_accident(self):
@@ -133,7 +126,6 @@ class Player():
             self.money -= 100
         else:
             self.holding_insurance['driver'] = False
-            print("自動車保険を回収します")
 
     def _get_sick(self):
         if self.holding_insurance['life'] is False:
@@ -141,12 +133,10 @@ class Player():
                 self.money -= 80
         else:
             self.holding_insurance['life'] = False
-            print("生命保険を回収します")
 
 
     def _special_bonus(self):
         self.money += 800
-        print("Bonus" + str(self.money))
 
 
 
