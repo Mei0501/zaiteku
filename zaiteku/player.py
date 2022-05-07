@@ -6,13 +6,10 @@ import random
 
 class Player():
 
-    def __init__(self, name, finish_money=10000, monthly_money=1000):
+    def __init__(self, name):
         self.name = name
-        self.finish_money = finish_money
-        self.monthly_money = monthly_money 
         self.money = 0
         self.position = 0
-        self.is_finished = False
         self.has_zaiteku = False
         self.holding_insurance = {'driver': False, 'life': False}
         self.zaiteku_type = None
@@ -25,13 +22,10 @@ class Player():
         self.position = self.position + role_dice()
         if self.position > 58:
            self.position = 0 
-           self.money += self.monthly_money
            self.money += self.monthly_earn_money
            self.money -= self.monthly_payment_money
-
-           if self.money >= self.finish_money:
-               self.is_finished = True
         self._get_event()
+
 
     def _get_event(self):
         zaiteku_positions = [2, 5, 11, 16, 19, 23, 31, 34, 38, 46, 55]
@@ -71,7 +65,6 @@ class Player():
             self._get_sick()
 
 
-    
     def _draw_zaitekucard(self):
          if self.has_zaiteku is False:
             self.zaiteku_type = 'investment'
@@ -79,7 +72,7 @@ class Player():
             self.has_zaiteku = True
             self.monthly_earn_money = 5000
 
-    
+
     def _draw_newscard(self):
         if self.zaiteku_type == 'investment':
             self.money += 5000
