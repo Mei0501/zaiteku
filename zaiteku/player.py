@@ -2,51 +2,49 @@
 
 import random
 
-#Playerクラスの作成
+# Playerクラスの作成
+
 
 class Player():
 
-    def __init__(self, name):
+    def __init__(self, name, monthly_money=1000):
         self.name = name
         self.money = 0
         self.position = 0
         self.has_zaiteku = False
         self.holding_insurance = {'driver': False, 'life': False}
         self.zaiteku_type = None
+        self.monthly_money = monthly_money
         self.monthly_earn_money = 0
         self.monthly_payment_money = 0
 
-
-    #procceed関数（サイコロの分だけ進む関数）作成
+    # procceed関数（サイコロの分だけ進む関数）作成
     def proceed(self):
         self.position = self.position + role_dice()
         if self.position > 58:
-           self.position = 0 
-           self.money += self.monthly_earn_money
-           self.money -= self.monthly_payment_money
+            self.position = 0
+            self.money += self.monthly_money
+            self.money += self.monthly_earn_money
+            self.money -= self.monthly_payment_money
         self._get_event()
-
 
     def _get_event(self):
         zaiteku_positions = [2, 5, 11, 16, 19, 23, 31, 34, 38, 46, 55]
         news_positions = [3, 7, 12, 21, 28, 32, 39, 44, 56]
-        post_positions =  [4,13,18,26,36,40,47,53]
+        post_positions = [4, 13, 18, 26, 36, 40, 47, 53]
         insurance_positions = [8, 29, 42, 51]
         stock_position = [10, 48]
         car_accident_positions = [9, 50]
         get_sick_positions = [27, 37, 52]
         special_position = [49]
 
-
-    
-    
         if self.position in zaiteku_positions:
             self._draw_zaitekucard()
-    
+
         elif self.position in news_positions:
             self._draw_newscard()
-    
-        elif self.position in news_positions:
+
+        elif self.position in post_positions:
             self._draw_postcard()
 
         elif self.position in insurance_positions:
@@ -64,25 +62,23 @@ class Player():
         elif self.position in get_sick_positions:
             self._get_sick()
 
-
     def _draw_zaitekucard(self):
-         if self.has_zaiteku is False:
+        if self.has_zaiteku is False:
             self.zaiteku_type = 'investment'
             self.money -= 40000
             self.has_zaiteku = True
             self.monthly_earn_money = 5000
 
-
     def _draw_newscard(self):
         if self.zaiteku_type == 'investment':
             self.money += 5000
 
-    
     def _draw_postcard(self):
         self.money -= 100
 
     def _draw_insurancecard(self):
-        if self.holding_insurance['driver'] is True and self.holding_insurance['life'] is True :
+        if (self.holding_insurance['driver'] is True and
+                self.holding_insurance['life'] is True):
             pass
         else:
             while True:
@@ -90,13 +86,13 @@ class Player():
                 name = input("choose from 'driver' and 'life' and 'none'")
                 if name == 'driver':
                     if self.holding_insurance['driver'] is True:
-                        print("you already have driver self.holding_insurancerance")
+                        print("you already have driver self.holding_insurance")
                     else:
                         self.holding_insurance['driver'] = True
                         break
                 elif name == 'life':
                     if self.holding_insurance['life'] is True:
-                        print("you already have life self.holding_insurancerance")
+                        print("you already have life self.holding_insurance")
                     else:
                         self.holding_insurance['life'] = True
                         break
@@ -107,12 +103,11 @@ class Player():
             print(self.holding_insurance)
 
     def _stock(self):
-        stock_price = role_dice() *100
+        stock_price = role_dice() * 100
         if self.position == 10:
             self.money += stock_price
         else:
             self.money -= stock_price
-
 
     def _car_accident(self):
         if self.holding_insurance['driver'] is False:
@@ -127,16 +122,12 @@ class Player():
         else:
             self.holding_insurance['life'] = False
 
-
     def _special_bonus(self):
         self.money += 800
 
 
-
-#サイコロを２個ふった数をかえす
 def role_dice():
     dice_eyes1 = random.randint(1, 6)
     dice_eyes2 = random.randint(1, 6)
     dice_sum = dice_eyes1 + dice_eyes2
     return dice_sum
-
