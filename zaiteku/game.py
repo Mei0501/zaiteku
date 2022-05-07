@@ -14,7 +14,9 @@ class Game():
         while is_continue:
             for name in self.players:
                 self.players[name].proceed()
-                if self.players[name].is_finished is True:
+                #もしセルフマネーが
+                if self.players[name].money >= self.finish_money:
+                #if self.players[name].is_finished is True:
                     print(name + " won the game")
                     is_continue = False
                     break
