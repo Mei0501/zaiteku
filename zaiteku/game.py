@@ -16,11 +16,14 @@ class Game():
                 self.players[name].proceed()
                 if self.players[name].position == 0:
                     self.players[name].money += self.monthly_money
-                    if self.players[name].money >= self.finish_money:
+                check_finished()
+                    #if self.players[name].money >= self.finish_money:
                     #if self.players[name].is_finished is True:
-                        print(name + " won the game")
-                        is_continue = False
-                        break
+                        #print(name + " won the game")
+                        #is_continue = False
+                break
 
     def check_finished(self):
-        pass
+        if self.players[name].money >= self.finish_money:
+            print(name + " won the game")
+            is_continue = False
