@@ -18,8 +18,6 @@ class Game():
         while not is_finished:
             for name in self.players:
                 self.players[name].proceed()
-                if self.players[name].position == 0:
-                    self.players[name].money += self.monthly_money
                 is_finished = self.check_is_finished(name=name)
 
     def check_is_finished(self, name):
