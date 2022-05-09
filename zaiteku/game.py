@@ -1,5 +1,8 @@
+#!/usr/bin/env python
+
 import sys
 from player import Player
+import event
 sys.path.append('/Users/mizo/Project/zaiteku/zaiteku')
 
 # Player(name)でインスタンス化マネーなどはデフォルト値
@@ -18,6 +21,8 @@ class Game():
         while not is_finished:
             for name in self.players:
                 self.players[name].proceed()
+                event._get_event(name, self.players)
+                # 引数(name,self.players)
                 is_finished = self.check_is_finished(name=name)
 
     def check_is_finished(self, name):
