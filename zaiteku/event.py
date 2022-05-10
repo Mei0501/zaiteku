@@ -4,7 +4,7 @@ import sys
 from player import Player
 sys.path.append('/Users/mizo/Project/zaiteku/zaiteku')
 
-def _get_event(name, players):
+def get_event(name, players):
     player = players[name]
     zaiteku_positions = [2, 5, 11, 16, 19, 23, 31, 34, 38, 46, 55]
     news_positions = [3, 7, 12, 21, 28, 32, 39, 44, 56]
@@ -16,7 +16,7 @@ def _get_event(name, players):
     special_position = [49]
 
     if player.position in zaiteku_positions:
-        player._draw_zaitekucard()
+        _draw_zaitekucard()
  
     elif player.position in news_positions:
         player._draw_newscard()

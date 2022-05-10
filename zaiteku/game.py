@@ -21,7 +21,7 @@ class Game():
         while not is_finished:
             for name in self.players:
                 self.players[name].proceed()
-                event._get_event(name, self.players)
+                event.get_event(name, self.players)
                 # 引数(name,self.players)
                 is_finished = self.check_is_finished(name=name)
 
