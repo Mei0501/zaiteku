@@ -16,30 +16,33 @@ def get_event(name, players):
     car_accident_positions = [9, 50]
     get_sick_positions = [27, 37, 52]
     special_position = [49]
+    encouragement_party_position = [43]
 
     if player.position in zaiteku_positions:
         _draw_zaitekucard(player)
  
     elif player.position in news_positions:
-        player._draw_newscard(player)
+        _draw_newscard(player)
  
     elif player.position in post_positions:
-        player._draw_postcard(player)
+        _draw_postcard(player)
  
     elif player.position in insurance_positions:
-        player._draw_insurancecard(player)
+        _draw_insurancecard(player)
  
     elif player.position in stock_position:
-        player._stock(player)
+        _stock(player)
  
     elif player.position in special_position:
-        player._special_bonus(player)
+        _special_bonus(player)
  
     elif player.position in car_accident_positions:
-        player._car_accident(player)
+        _car_accident(player)
  
     elif player.position in get_sick_positions:
-        player._get_sick(player)
+        _get_sick(player)
+    elif player.position in encouragement_party_position:
+        _encouragement(player)
  
 def _draw_zaitekucard(player):
     if player.has_zaiteku is False:
@@ -103,3 +106,6 @@ def _get_sick(player):
 
 def _special_bonus(player):
     player.money += 800
+
+
+
