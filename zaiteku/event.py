@@ -2,6 +2,8 @@
 
 import sys
 from player import Player
+from utils import role_dice
+
 sys.path.append('/Users/mizo/Project/zaiteku/zaiteku')
 
 def get_event(name, players):
@@ -16,88 +18,88 @@ def get_event(name, players):
     special_position = [49]
 
     if player.position in zaiteku_positions:
-        _draw_zaitekucard()
+        _draw_zaitekucard(player)
  
     elif player.position in news_positions:
-        player._draw_newscard()
+        player._draw_newscard(player)
  
     elif player.position in post_positions:
-        player._draw_postcard()
+        player._draw_postcard(player)
  
     elif player.position in insurance_positions:
-        player._draw_insurancecard()
+        player._draw_insurancecard(player)
  
     elif player.position in stock_position:
-        player._stock()
+        player._stock(player)
  
     elif player.position in special_position:
-        player._special_bonus()
+        player._special_bonus(player)
  
     elif player.position in car_accident_positions:
-        player._car_accident()
+        player._car_accident(player)
  
     elif player.position in get_sick_positions:
-        player._get_sick()
+        player._get_sick(player)
  
-    def _draw_zaitekucard():
-        if player.has_zaiteku is False:
-            player.zaiteku_type = 'investment'
-            player.money -= 40000
-            player.has_zaiteku = True
-            player.monthly_earn_money = 5000
-    
-    def _draw_newscard():
-        if player.zaiteku_type == 'investment':
-            player.money += 5000
-    
-    def _draw_postcard():
-        player.money -= 100
-    
-    def _draw_insurancecard():
-        if (player.holding_insurance['driver'] is True and
-                player.holding_insurance['life'] is True):
-            pass
-        else:
-            while True:
-                print(player.holding_insurance)
-                name = input("choose from 'driver' and 'life' and 'none'")
-                if name == 'driver':
-                    if player.holding_insurance['driver'] is True:
-                        print("you already have driver player.holding_insurance")
-                    else:
-                        player.holding_insurance['driver'] = True
-                        break
-                elif name == 'life':
-                    if player.holding_insurance['life'] is True:
-                        print("you already have life player.holding_insurance")
-                    else:
-                        player.holding_insurance['life'] = True
-                        break
-                elif name == 'none':
-                    break
-                else:
-                    print("input %s is illegal" % name)
+def _draw_zaitekucard(player):
+    if player.has_zaiteku is False:
+        player.zaiteku_type = 'investment'
+        player.money -= 40000
+        player.has_zaiteku = True
+        player.monthly_earn_money = 5000
+
+def _draw_newscard(player):
+    if player.zaiteku_type == 'investment':
+        player.money += 5000
+
+def _draw_postcard(player):
+    player.money -= 100
+
+def _draw_insurancecard(player):
+    if (player.holding_insurance['driver'] is True and
+            player.holding_insurance['life'] is True):
+        pass
+    else:
+        while True:
             print(player.holding_insurance)
-    
-    def _stock(self):
-        stock_price = role_dice() * 100
-        if self.position == 10:
-            self.money += stock_price
-        else:
-            self.money -= stock_price
-    
-    def _car_accident(self):
-        if self.holding_insurance['driver'] is False:
-            self.money -= 100
-        else:
-            self.holding_insurance['driver'] = False
-    
-    def _get_sick(self):
-        if self.holding_insurance['life'] is False:
-            if self.position == 27:
-                self.money -= 80
-        else:
-            self.holding_insurance['life'] = False
-    
-    def _special_bonus(self):
-        self.money += 800
+            name = input("choose from 'driver' and 'life' and 'none'")
+            if name == 'driver':
+                if player.holding_insurance['driver'] is True:
+                    print("you already have driver player.holding_insurance")
+                else:
+                    player.holding_insurance['driver'] = True
+                    break
+            elif name == 'life':
+                if player.holding_insurance['life'] is True:
+                    print("you already have life player.holding_insurance")
+                else:
+                    player.holding_insurance['life'] = True
+                    break
+            elif name == 'none':
+                break
+            else:
+                print("input %s is illegal" % name)
+        print(player.holding_insurance)
+
+def _stock(player):
+    stock_price = role_dice() * 100
+    if player.position == 10:
+        player.money += stock_price
+    else:
+        player.money -= stock_price
+
+def _car_accident(player):
+    if player.holding_insurance['driver'] is False:
+        player.money -= 100
+    else:
+        player.holding_insurance['driver'] = False
+
+def _get_sick(player):
+    if player.holding_insurance['life'] is False:
+        if player.position == 27:
+            player.money -= 80
+    else:
+        player.holding_insurance['life'] = False
+
+def _special_bonus(player):
+    player.money += 800

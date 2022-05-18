@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import random
-
+from utils import role_dice
 # Playerクラスの作成
 
 
@@ -26,10 +26,3 @@ class Player():
             self.money += self.monthly_money
             self.money += self.monthly_earn_money
             self.money -= self.monthly_payment_money
-         # self._get_event()
-
-def role_dice():
-    dice_eyes1 = random.randint(1, 6)
-    dice_eyes2 = random.randint(1, 6)
-    dice_sum = dice_eyes1 + dice_eyes2
-    return dice_sum

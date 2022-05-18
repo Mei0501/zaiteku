@@ -22,8 +22,10 @@ class Game():
             for name in self.players:
                 self.players[name].proceed()
                 event.get_event(name, self.players)
-                # 引数(name,self.players)
                 is_finished = self.check_is_finished(name=name)
+                if is_finished is True:
+                    break
+                
 
     def check_is_finished(self, name):
         if self.players[name].money >= self.finish_money:
