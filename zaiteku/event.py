@@ -42,7 +42,7 @@ def get_event(name, players):
     elif player.position in get_sick_positions:
         _get_sick(player)
     elif player.position in encouragement_party_position:
-        _encouragement(player)
+        _encouragement(player,players)
  
 def _draw_zaitekucard(player):
     if player.has_zaiteku is False:
@@ -65,7 +65,7 @@ def _draw_insurancecard(player):
     else:
         while True:
             print(player.holding_insurance)
-            name = input("choose from 'driver' and 'life' and 'none'")
+            name = input("choose from 'driver' and 'life' and 'none'>>>")
             if name == 'driver':
                 if player.holding_insurance['driver'] is True:
                     print("you already have driver player.holding_insurance")
@@ -107,7 +107,8 @@ def _get_sick(player):
 def _special_bonus(player):
     player.money += 800
 
-def _encouragement():
+def _encouragement(player,players):
+    print("otukaresama")
     for member in players:
         if member == player.name:
             player.money += len(players) * 100
