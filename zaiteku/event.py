@@ -108,10 +108,11 @@ def _special_bonus(player):
     player.money += 800
 
 def _encouragement(player,players):
+    print(player.money)
     print("otukaresama")
     for member in players:
         if member == player.name:
-            player.money += len(players) * 100
+            player.money += (len(players)-1) * 100
         else:
             player.money -= 100
-
+    print(player.money)
