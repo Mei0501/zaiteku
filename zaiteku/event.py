@@ -114,6 +114,4 @@ def _encouragement(name,players):
             players[player_name].money += (len(players)-1) * 100
         else:
             players[player_name].money -= 100
-    print(players['taro'].money)
-    print(players['jiro'].money)
 
