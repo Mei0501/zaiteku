@@ -41,8 +41,9 @@ def get_event(name, players):
  
     elif player.position in get_sick_positions:
         _get_sick(player)
+
     elif player.position in encouragement_party_position:
-        _encouragement(player,players)
+        _encouragement(name, players)
  
 def _draw_zaitekucard(player):
     if player.has_zaiteku is False:
@@ -107,12 +108,12 @@ def _get_sick(player):
 def _special_bonus(player):
     player.money += 800
 
-def _encouragement(player,players):
-    print(player.money)
-    print("otukaresama")
-    for member in players:
-        if member == player.name:
-            player.money += (len(players)-1) * 100
+def _encouragement(name,players):
+    for player_name in players:
+        if player_name == name:
+            players[player_name].money += (len(players)-1) * 100
         else:
-            player.money -= 100
-    print(player.money)
+            players[player_name].money -= 100
+    print(players['taro'].money)
+    print(players['jiro'].money)
+
