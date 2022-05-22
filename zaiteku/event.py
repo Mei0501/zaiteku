@@ -18,6 +18,8 @@ def get_event(name, players):
     special_position = [49]
     encouragement_party_position = [43]
     enter_special_bonus_position = [24]
+    exit_special_bonus_position = [110, 111, 112, 113, 114, 115]
+    last_special_bonus_position = [49]
 
     if player.position in zaiteku_positions:
         _draw_zaitekucard(player)
@@ -48,6 +50,12 @@ def get_event(name, players):
 
     elif player.position in enter_special_bonus_position:
         _enter_special_bonus(player)
+
+    elif player.position in exit_special_bonus_position:
+        _exit_special_bonus(player)
+
+    elif player.position in last_special_bonus_position:
+        _last_special_bonus(player)
  
 def _draw_zaitekucard(player):
     if player.has_zaiteku is False:
@@ -127,5 +135,9 @@ def _enter_special_bonus(player):
     else:
         print("nomal course")
 
+def _exit_special_bonus(player):
+    player.position = 49
+    _last_special_bonus(player)
 
-
+def _last_special_bonus(player):
+    player.money += 800
