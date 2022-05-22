@@ -17,6 +17,7 @@ def get_event(name, players):
     get_sick_positions = [27, 37, 52]
     special_position = [49]
     encouragement_party_position = [43]
+    enter_special_bonus_position = [24]
 
     if player.position in zaiteku_positions:
         _draw_zaitekucard(player)
@@ -44,6 +45,9 @@ def get_event(name, players):
 
     elif player.position in encouragement_party_position:
         _encouragement(name, players)
+
+    elif player.position in enter_special_bonus_position:
+        _enter_special_bonus(player)
  
 def _draw_zaitekucard(player):
     if player.has_zaiteku is False:
@@ -114,4 +118,14 @@ def _encouragement(name,players):
             players[player_name].money += (len(players)-1) * 100
         else:
             players[player_name].money -= 100
+
+def _enter_special_bonus(player):
+    player.money += 400
+    adventure_course = input("Do you want to go on an adventure course? yes or no")
+    if adventure_course == "yes":
+        print("enter the adventure course")
+    else:
+        print("nomal course")
+
+
 
