@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import random
-from utils import role_dice
+from dice import role_dice
 # Playerクラスの作成
 
 
