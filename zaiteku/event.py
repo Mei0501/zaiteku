@@ -98,7 +98,8 @@ def _draw_insurancecard(player):
         print(player.holding_insurance)
 
 def _stock(player):
-    stock_price = role_dice(False) * 100
+    stock_price = role_dice(player.is_advanced_couse) * 100
+    print("ラッキー")
     if player.position == 10:
         player.money += stock_price
     else:
@@ -129,7 +130,7 @@ def _encouragement(name,players):
 
 def _enter_special_bonus(player):
     player.money += 400
-    adventure_course = input("Do you want to go on an adventure course? yes or no")
+    adventure_course = input("Do you want to go on an adventure course? yes or no >>>")
     if adventure_course == "yes":
         print("enter the adventure course")
         player.is_advanced_couse is True
