@@ -2,7 +2,7 @@
 
 import sys
 from player import Player
-from utils import role_dice
+from dice import role_dice
 
 sys.path.append('/Users/mizo/Project/zaiteku/zaiteku')
 

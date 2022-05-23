@@ -32,3 +32,12 @@ class Game():
             print(name + " won the game")
             return True
         return False
+
+
+    def proceed(self):
+        self.position = self.position + role_dice()
+        if self.position > 58:
+            self.position = 0
+            self.money += self.monthly_money
+            self.money += self.monthly_earn_money
+            self.money -= self.monthly_payment_money
