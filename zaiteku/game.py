@@ -16,7 +16,6 @@ class Game():
                         for name in player_names}
         self.finish_money = finish_money
         self.monthly_money = monthly_money
-        #self._proceed = _proceed
 
     def run(self):
         is_finished = False
@@ -27,7 +26,6 @@ class Game():
                 is_finished = self.check_is_finished(name=name)
                 if is_finished is True:
                     break
-                
 
     def check_is_finished(self, name):
         if self.players[name].money >= self.finish_money:

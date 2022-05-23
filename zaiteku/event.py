@@ -1,10 +1,10 @@
 #!/usr/bin/env/ python
 
 import sys
-from player import Player
 from dice import role_dice
 
 sys.path.append('/Users/mizo/Project/zaiteku/zaiteku')
+
 
 def get_event(name, players):
     player = players[name]
@@ -23,25 +23,25 @@ def get_event(name, players):
 
     if player.position in zaiteku_positions:
         _draw_zaitekucard(player)
- 
+
     elif player.position in news_positions:
         _draw_newscard(player)
- 
+
     elif player.position in post_positions:
         _draw_postcard(player)
- 
+
     elif player.position in insurance_positions:
         _draw_insurancecard(player)
- 
+
     elif player.position in stock_position:
         _stock(player)
- 
+
     elif player.position in special_position:
         _special_bonus(player)
- 
+
     elif player.position in car_accident_positions:
         _car_accident(player)
- 
+
     elif player.position in get_sick_positions:
         _get_sick(player)
 
@@ -56,7 +56,7 @@ def get_event(name, players):
 
     elif player.position in last_special_bonus_position:
         _last_special_bonus(player)
- 
+
 def _draw_zaitekucard(player):
     if player.has_zaiteku is False:
         player.zaiteku_type = 'investment'
@@ -97,6 +97,7 @@ def _draw_insurancecard(player):
                 print("input %s is illegal" % name)
         print(player.holding_insurance)
 
+
 def _stock(player):
     stock_price = role_dice(player.is_advanced_couse) * 100
     print("ラッキー")
@@ -111,6 +112,7 @@ def _car_accident(player):
     else:
         player.holding_insurance['driver'] = False
 
+
 def _get_sick(player):
     if player.holding_insurance['life'] is False:
         if player.position == 27:
@@ -118,15 +120,18 @@ def _get_sick(player):
     else:
         player.holding_insurance['life'] = False
 
+
 def _special_bonus(player):
     player.money += 800
 
-def _encouragement(name,players):
+
+def _encouragement(name, players):
     for player_name in players:
         if player_name == name:
             players[player_name].money += (len(players)-1) * 100
         else:
             players[player_name].money -= 100
+
 
 def _enter_special_bonus(player):
     player.money += 400
@@ -137,10 +142,12 @@ def _enter_special_bonus(player):
     else:
         print("nomal course")
 
+
 def _exit_special_bonus(player):
     player.position = 49
     player.is_advanced_couse is False
     _last_special_bonus(player)
+
 
 def _last_special_bonus(player):
     player.money += 800

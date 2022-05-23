@@ -16,5 +16,4 @@ class Player():
         self.monthly_earn_money = 0
         self.monthly_payment_money = 0
         self.is_advanced_couse = False
-        #self.proceed = proceed
 
