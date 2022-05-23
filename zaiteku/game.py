@@ -16,15 +16,14 @@ class Game():
                         for name in player_names}
         self.finish_money = finish_money
         self.monthly_money = monthly_money
-        #self.proceed = proceed
+        #self._proceed = _proceed
 
     def run(self):
         is_finished = False
         while not is_finished:
             for name in self.players:
-                self.players[name].proceed(players[name])
-                event.get_event(name, self.players)
-                #exent.いらん？
+                self._proceed(self.players[name])
+                get_event(name, self.players)
                 is_finished = self.check_is_finished(name=name)
                 if is_finished is True:
                     break
@@ -43,4 +42,3 @@ class Game():
             player.money += player.monthly_money
             player.money += player.monthly_earn_money
             player.money -= player.monthly_payment_money
-        print("puro")

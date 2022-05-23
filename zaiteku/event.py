@@ -98,7 +98,7 @@ def _draw_insurancecard(player):
         print(player.holding_insurance)
 
 def _stock(player):
-    stock_price = role_dice() * 100
+    stock_price = role_dice(False) * 100
     if player.position == 10:
         player.money += stock_price
     else:
