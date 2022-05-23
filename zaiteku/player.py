@@ -16,5 +16,5 @@ class Player():
         self.monthly_money = monthly_money
         self.monthly_earn_money = 0
         self.monthly_payment_money = 0
-        self.advanced_couse = False
+        self.is_advanced_couse = False
 

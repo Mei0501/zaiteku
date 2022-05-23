@@ -132,11 +132,13 @@ def _enter_special_bonus(player):
     adventure_course = input("Do you want to go on an adventure course? yes or no")
     if adventure_course == "yes":
         print("enter the adventure course")
+        player.is_advanced_couse is True
     else:
         print("nomal course")
 
 def _exit_special_bonus(player):
     player.position = 49
+    player.is_advanced_couse is False
     _last_special_bonus(player)
 
 def _last_special_bonus(player):
