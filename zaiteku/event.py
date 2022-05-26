@@ -20,6 +20,7 @@ def get_event(name, players):
     enter_special_bonus_position = [24]
     exit_special_bonus_position = [110, 111, 112, 113, 114, 115]
     last_special_bonus_position = [49]
+    lucky_chance_position = [15, 30]
 
     if player.position in zaiteku_positions:
         _draw_zaitekucard(player)
@@ -56,6 +57,9 @@ def get_event(name, players):
 
     elif player.position in last_special_bonus_position:
         _last_special_bonus(player)
+
+    elif player.position in lucky_chance_position:
+        _lucky_chance(player)
 
 def _draw_zaitekucard(player):
     if player.has_zaiteku is False:
@@ -150,3 +154,14 @@ def _exit_special_bonus(player):
 
 def _last_special_bonus(player):
     player.money += 800
+
+#幸運のサイコロゲーム
+def _lucky_chance(player):
+    player.position = 30
+    bet_money = input("Please enter the bet 100-500 >>>")
+    for _ in range(3):
+        dice_eyes3 = random.randint(1,6)
+        dice_eyes4 = random.randint(1,6)
+        if dice_eyes3 == dice_eyes4:
+            player.money += bet_money * 10
+            
