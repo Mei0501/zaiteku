@@ -78,7 +78,7 @@ def _draw_insurancecard(player):
     else:
         while True:
             print(player.holding_insurance)
-            name = input("choose from 'driver' and 'life' and 'none'>>>")
+            name = input(player.name + "-> choose from 'driver' and 'life' and 'none'>>>")
             if name == 'driver':
                 if player.holding_insurance['driver'] is True:
                     print("you already have driver player.holding_insurance")
@@ -100,7 +100,6 @@ def _draw_insurancecard(player):
 
 def _stock(player):
     stock_price = role_dice(player.is_advanced_couse) * 100
-    print("ラッキー")
     if player.position == 10:
         player.money += stock_price
     else:
