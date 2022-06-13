@@ -166,5 +166,7 @@ def _lucky_chance(player):
         dice_eyes4 = random.randint(1, 6)
         if dice_eyes3 == dice_eyes4:
             player.money += bet_money * 10
-        break
-
+            print("win!!")
+            break
+        else:
+            print("lose")
