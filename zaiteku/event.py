@@ -176,20 +176,20 @@ def _lucky_chance(player):
         try:
             bet_money = int(input("Please enter the bet 100-500 >>>"))
             print(bet_money)
-            player.money -= bet_money
-            for _ in range(3):
-                dice_eyes3 = random.randint(1, 6)
-                dice_eyes4 = random.randint(1, 6)
-                if dice_eyes3 == dice_eyes4:
-                    player.money += bet_money * 10
-                    print("Win!!")
-                    break
-                else:
-                    print("Lose")
-            
             break
         except ValueError :
             print("Please enter the bet 100-500 again")
+    
+    player.money -= bet_money
+    for _ in range(3):
+        dice_eyes3 = random.randint(1, 6)
+        dice_eyes4 = random.randint(1, 6)
+        if dice_eyes3 == dice_eyes4:
+            player.money += bet_money * 10
+            print("Win!!")
+            break
+        else:
+            print("Lose")
     
 def _incentive(player):
     print("インセンティブ獲得")
