@@ -22,6 +22,7 @@ def get_event(name, players):
     exit_special_bonus_position = [110, 111, 112, 113, 114, 115]
     last_special_bonus_position = [49]
     lucky_chance_position = [15, 30]
+    incentive_position = [100, 103, 105, 107, 109]
 
     if player.position in zaiteku_positions:
         _draw_zaitekucard(player)
@@ -61,6 +62,9 @@ def get_event(name, players):
 
     elif player.position in lucky_chance_position:
         _lucky_chance(player)
+
+    elif player.position in incentive_position:
+        _incentive(player)
 
 def _draw_zaitekucard(player):
     if player.has_zaiteku is False:
@@ -170,3 +174,14 @@ def _lucky_chance(player):
             break
         else:
             print("lose")
+
+def _incentive(player):
+    print("インセンティブ獲得")
+    if player.position == 100:
+        player.money += 100
+    elif player.position == 103:
+        player.money += 500
+    elif player.position == 105 or 107:
+        player.money += 1000
+    elif player.position == 109:
+        player.money += 3000
