@@ -166,20 +166,13 @@ def _exit_special_bonus(player):
 
 
 def _last_special_bonus(player):
+    return bet_money
     player.money += 800
 
 
 def _lucky_chance(player):
     player.position = 30
-    bet_money = None
-    while bet_money == None:
-        try:
-            bet_money = int(input("Please enter the bet 100-500 >>>"))
-            print(bet_money)
-            break
-        except ValueError :
-            print("Please enter the bet 100-500 again")
-    
+    bet_money = _get_bet_money()
     player.money -= bet_money
     for _ in range(3):
         dice_eyes3 = random.randint(1, 6)
@@ -190,7 +183,17 @@ def _lucky_chance(player):
             break
         else:
             print("Lose")
-    
+
+def _get_bet_money():
+    while True:
+        try:
+            bet_money = int(input("Please enter the bet 100-500."))
+        except ValueError:
+            print("fail! try again")
+            continue
+        if (bet_money >= 100 and bet_money <= 500):
+            return bet_money
+
 def _incentive(player):
     print("インセンティブ獲得")
     if player.position == 100:
