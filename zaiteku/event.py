@@ -23,6 +23,7 @@ def get_event(name, players):
     last_special_bonus_position = [49]
     lucky_chance_position = [15, 30]
     incentive_position = [100, 103, 105, 107, 109]
+    shopping_position = [102, 106]
 
     if player.position in zaiteku_positions:
         _draw_zaitekucard(player)
@@ -65,6 +66,9 @@ def get_event(name, players):
 
     elif player.position in incentive_position:
         _incentive(player)
+
+    elif player.position in shopping_position:
+        _shopping(player)
 
 def _draw_zaitekucard(player):
     if player.has_zaiteku is False:
@@ -163,17 +167,21 @@ def _last_special_bonus(player):
 
 def _lucky_chance(player):
     player.position = 30
-    bet_money = int(input("Please enter the bet 100-500 >>>"))
-    player.money -= bet_money
-    for _ in range(3):
-        dice_eyes3 = random.randint(1, 6)
-        dice_eyes4 = random.randint(1, 6)
-        if dice_eyes3 == dice_eyes4:
-            player.money += bet_money * 10
-            print("win!!")
-            break
-        else:
-            print("lose")
+    try:
+        bet_money = int(input("Please enter the bet 100-500 >>>"))
+    except ValueError :
+        print("enter the bet 100-500")
+
+        player.money -= bet_money
+        for _ in range(3):
+            dice_eyes3 = random.randint(1, 6)
+            dice_eyes4 = random.randint(1, 6)
+            if dice_eyes3 == dice_eyes4:
+                player.money += bet_money * 10
+                print("Win!!")
+                break
+            else:
+                print("Lose")
 
 def _incentive(player):
     print("インセンティブ獲得")
@@ -185,3 +193,9 @@ def _incentive(player):
         player.money += 1000
     elif player.position == 109:
         player.money += 3000
+
+def _shopping(player):
+    if player.position == 102:
+        player.money -= 200
+    elif player.position == 106:
+        player.money -= 2000
