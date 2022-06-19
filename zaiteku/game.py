@@ -11,13 +11,12 @@ sys.path.append('/Users/mizo/Project/zaiteku/zaiteku')
 
 class Game():
 
-    def __init__(self, player_names, finish_money=10000, monthly_money=1000,
-            donation=0):
+    def __init__(self, player_names, finish_money=10000, monthly_money=1000):
         self.players = {name: Player(name, monthly_money=monthly_money)
                         for name in player_names}
         self.finish_money = finish_money
         self.monthly_money = monthly_money
-        self.donation = donation
+        self.donation_box = Donation() 
 
     def run(self):
         is_finished = False

@@ -25,6 +25,8 @@ def get_event(name, players):
     incentive_position = [100, 103, 105, 107, 109]
     shopping_position = [102, 106]
     promotion_position = [17]
+    donation_position = [22, 33, 101, 104, 108]
+
 
     if player.position in zaiteku_positions:
         _draw_zaitekucard(player)
@@ -73,6 +75,9 @@ def get_event(name, players):
 
     elif player.position in promotion_position:
         _promotion(name, players)
+
+    elif player.position in donation_position:
+        donation_money = _get_donation_money_from_player(player)
 
 def _draw_zaitekucard(player):
     if player.has_zaiteku is False:
@@ -219,3 +224,16 @@ def _promotion(name, players):
             players[player_name].position = 24
         else:
             players[player_name].money -= 50
+
+def _get_donation_money_from_player(player):
+     if player.position == 22 or position == 33:
+        donation_price = 100
+    elif player.position == 101:
+        donation_price = 500
+    elif player.position == 104 or position ==108 :
+        donation_price =1000
+    player.money -= donation_price
+    return donation_money 
+    print(player.money)
+    print(donation_money)
+    
