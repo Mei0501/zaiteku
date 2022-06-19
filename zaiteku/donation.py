@@ -1,7 +1,13 @@
 #!usr/bin/env python
 
-class Donation():
+
+class DonationBox():
 
     def __init__(self):
-        self.donation_box_money = 0
+        self.money = 0
+
+    def add_money(self, money):
+        self.money += money
+    print("寄付ありがとうございます")
+
 
